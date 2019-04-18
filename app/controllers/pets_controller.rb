@@ -16,7 +16,12 @@ class PetsController < ApplicationController
   end
 
   def index
-    @pets = Pet.all
+    if params[:age]
+      @pets = Pet.search_by_age(params[:age]).order_by_age
+      @pets = Pet.order_by_age if @pets == []
+    else
+      @pets = Pet.order_by_age
+    end
   end
 
   def show

@@ -1,5 +1,22 @@
 <h1>All the Pets!</h1>
 
-<% @pets.each do |pet| %>
-    <%= link_to pet.name, pet_path(@pet) %>
+<%= form_tag("/pets", method: "get") do %>
+  <%= label_tag(:age, "Enter the age you want to see") %>
+  <%= number_field_tag(:age) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<h3>Dogs:</h3>
+<% @pets.dogs.each do |pet| %>
+    <p><%= link_to pet.name, pet_path(pet) %> - <%= pet.age%></p>
+<% end %>
+
+<h3>Cats:</h3>
+<% @pets.cats.each do |pet| %>
+    <p><%= link_to pet.name, pet_path(pet) %> - <%= pet.age%></p>
+<% end %>
+
+<h3>Fish:</h3>
+<% @pets.fish.each do |pet| %>
+    <p><%= link_to pet.name, pet_path(pet) %> - <%= pet.age%></p>
 <% end %>
