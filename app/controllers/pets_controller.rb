@@ -1,13 +1,19 @@
 class PetsController < ApplicationController
 
   def new
-    @pet = Pet.new
+    #check if it's nested & it's a proper id
+    if params[:vet_id] && vet = Vet.find_by_id(params[:vet_id])
+      #nested route
+      @pet = vet.pets.build
+    else
+      #unnested
+      @pet = Pet.new
+    end
   end
 
 
   def create
-    @pet = Pet.new(pet_params(:name,:age,:species))
-
+    @pet = current_user.pets.build(pet_params)
     if @pet.save
       redirect_to pet_path(@pet)
     else
@@ -16,11 +22,16 @@ class PetsController < ApplicationController
   end
 
   def index
-    if params[:age]
-      @pets = Pet.search_by_age(params[:age]).order_by_age
-      @pets = Pet.order_by_age if @pets == []
+    if params[:vet_id] && vet = Vet.find_by_id(params[:vet_id])
+      #nested route
+      @pets = vet.pets
     else
-      @pets = Pet.order_by_age
+       if params[:age]
+          @pets = Pet.search_by_age(params[:age]).order_by_age
+          @pets = Pet.order_by_age if @pets == []
+        else
+          @pets = Pet.order_by_age
+        end
     end
   end
 
@@ -34,7 +45,7 @@ class PetsController < ApplicationController
 
   def update
     set_pet
-    if @pet.update(pet_params(:name,:age))
+    if @pet.update(pet_params)
       redirect_to pet_path(@pet)
     else
       render :edit
@@ -56,7 +67,7 @@ class PetsController < ApplicationController
     end
   end
 
-  def pet_params(*args)
-    params.require(:pet).permit(*args)
+  def pet_params
+    params.require(:pet).permit(:age, :name, :species, :vet_id)
   end
 end

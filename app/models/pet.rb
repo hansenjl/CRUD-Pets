@@ -1,6 +1,10 @@
 class Pet < ApplicationRecord
   validates :name, :species, presence: true
 
+  belongs_to :user
+
+  belongs_to :vet
+
   scope :order_by_age, -> {order(:age)}
   scope :older_animals, -> {where("age > ?",7)}
   scope :dogs, -> {where(species: "Dog")}

@@ -12,6 +12,12 @@
   <%= f.label :age %>
   <%= f.number_field :age, min:0 %>
 
+  <br><br>
+
+  <%= f.label :vet_id, "Select a Vet" %>
+  <%= f.collection_select :vet_id, Vet.all, :id, :name, prompt: true %>
+
+  <br><br>
   <%= f.submit %>
 
 <% end %>

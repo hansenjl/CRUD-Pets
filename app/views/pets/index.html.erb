@@ -8,15 +8,15 @@
 
 <h3>Dogs:</h3>
 <% @pets.dogs.each do |pet| %>
-    <p><%= link_to pet.name, pet_path(pet) %> - <%= pet.age%></p>
+    <p><%= link_to pet.name, pet_path(pet) %> - <%= pet.age%> - owner: <%= pet.user.try(:username) %> - vet: <%= pet.vet.try(:name) %></p>
 <% end %>
 
 <h3>Cats:</h3>
 <% @pets.cats.each do |pet| %>
-    <p><%= link_to pet.name, pet_path(pet) %> - <%= pet.age%></p>
+    <p><%= link_to pet.name, pet_path(pet) %> - <%= pet.age%> - owner: <%= pet.user.try(:username) %> - vet: <%= pet.vet.try(:name) %></p>
 <% end %>
 
 <h3>Fish:</h3>
 <% @pets.fish.each do |pet| %>
-    <p><%= link_to pet.name, pet_path(pet) %> - <%= pet.age%></p>
+    <p><%= link_to pet.name, pet_path(pet) %> - <%= pet.age%> - owner: <%= pet.user.try(:username) %> - vet: <%= pet.vet.try(:name) %> </p>
 <% end %>
