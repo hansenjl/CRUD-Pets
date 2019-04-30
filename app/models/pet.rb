@@ -13,7 +13,12 @@ class Pet < ApplicationRecord
 
   scope :search_by_age, -> (search_age){where("age = ?", search_age)}
 
+  def self.search_by_age(age)
+    where("age = ?", age)
+  end
 
+  # search or filter
+  # pets/oldest_three_pets
 
 
 end
