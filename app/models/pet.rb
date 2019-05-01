@@ -1,8 +1,9 @@
 class Pet < ApplicationRecord
   validates :name, :species, presence: true
+  validates :name, length: { minimum: 3,
+    too_long: "%{count} characters is the minimum allowed" }
 
   belongs_to :user
-
   belongs_to :vet
 
   scope :order_by_age, -> {order(:age)}

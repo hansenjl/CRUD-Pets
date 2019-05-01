@@ -1,0 +1,24 @@
+<%= form_for(@pet) do |f| %>
+
+  <%= render partial: 'layouts/errors', locals: {object: @pet} %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+
+  <%= f.label :species %>
+  <%= f.select(:species, [ "Dog", "Cat", "Fish" ]) %>
+
+  <%= f.label :age %>
+  <%= f.number_field :age, min:0 %>
+
+  <br><br>
+
+  <%= f.label :vet_id, "Select a Vet" %>
+  <%= f.collection_select :vet_id, Vet.all, :id, :name, prompt: true %>
+
+
+  <br><br>
+  <%= f.submit %>
+
+<% end %>

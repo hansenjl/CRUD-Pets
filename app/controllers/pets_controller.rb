@@ -22,6 +22,9 @@ class PetsController < ApplicationController
   end
 
   def index
+    if !logged_in?
+      redirect_to '/'
+    end
     if params[:vet_id] && vet = Vet.find_by_id(params[:vet_id])
       #nested route
       @pets = vet.pets

@@ -11,7 +11,8 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to pets_path
     else
-      redirect_to 'login'
+      flash[:error] = "Sorry, your username or password was incorrect"
+      redirect_to '/login'
     end
   end
 

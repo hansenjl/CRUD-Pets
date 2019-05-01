@@ -10,7 +10,12 @@
   </head>
 
   <body>
-    <%= link_to 'Log Out', logout_path, method: :delete %>
+
+    <% if logged_in? %>
+      <%= link_to 'Log Out', logout_path, method: :delete %>
+      <%= link_to 'All Pets', pets_path %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

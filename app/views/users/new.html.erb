@@ -2,8 +2,11 @@
 
 <%= form_for(@user) do |f| %>
 
+  <%= render partial: 'layouts/errors', locals: {object: @user} %>
+
+
   <%= f.label :username %>
-  <%= f.text_field :username %>
+  <%= f.text_field :username, required:true %>
 
   <%= f.label :email %>
   <%= f.email_field :email %>
