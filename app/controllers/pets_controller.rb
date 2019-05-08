@@ -4,10 +4,11 @@ class PetsController < ApplicationController
     #check if it's nested & it's a proper id
     if params[:vet_id] && vet = Vet.find_by_id(params[:vet_id])
       #nested route
-      @pet = vet.pets.build
+      @pet = vet.pets.build #has_many
     else
       #unnested
       @pet = Pet.new
+      @pet.build_vet  #belongs_to
     end
   end
 
@@ -17,6 +18,8 @@ class PetsController < ApplicationController
     if @pet.save
       redirect_to pet_path(@pet)
     else
+
+      @pet.build_vet
       render :new
     end
   end
@@ -71,6 +74,6 @@ class PetsController < ApplicationController
   end
 
   def pet_params
-    params.require(:pet).permit(:age, :name, :species, :vet_id)
+    params.require(:pet).permit(:age, :name, :species, :vet_id, vet_attributes: [:name, :location, :specialty])
   end
 end

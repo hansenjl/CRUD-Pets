@@ -23,6 +23,7 @@ class SessionsController < ApplicationController
       u.email = auth['info']['email']
       u.password = auth['uid']   # Secure Random Hex
     end
+    byebug
 
     session[:user_id] = @user.id
 

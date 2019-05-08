@@ -6,6 +6,13 @@ class Pet < ApplicationRecord
   belongs_to :user
   belongs_to :vet
 
+  #accepts_nested_attributes_for :vet
+
+   def vet_attributes=(attributes)
+      vet = Vet.find_or_create_by(attributes)
+      self.vet = vet if vet.valid? || !self.vet
+   end
+
   scope :order_by_age, -> {order(:age)}
   scope :older_animals, -> {where("age > ?",7)}
   scope :dogs, -> {where(species: "Dog")}

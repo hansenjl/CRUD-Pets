@@ -16,7 +16,22 @@
 
   <%= f.label :vet_id, "Select a Vet" %>
   <%= f.collection_select :vet_id, Vet.all, :id, :name, prompt: true %>
+  <br><br>
 
+  <% if !params[:vet_id] %>
+    <h4>Or add a new vet:</h4>
+
+    <%= f.fields_for :vet do |v|%>
+        <%= v.label :name %>
+        <%= v.text_field :name %>
+
+        <%= v.label :location %>
+        <%= v.text_field :location %>
+
+        <%= v.label :specialty %>
+        <%= v.text_field :specialty %>
+    <% end %>
+  <% end %>
 
   <br><br>
   <%= f.submit %>
