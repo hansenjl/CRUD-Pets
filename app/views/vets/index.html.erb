@@ -1,0 +1,9 @@
+<h1>All Vets</h1>
+
+<ul>
+  <% @vets.each do |vet|%>
+    <li>
+      <%= link_to vet.name, vet_path(vet) %> - <%= vet.location %> - specialty: <%= vet.specialty %>
+    </li>
+  <% end %>
+</ul>
