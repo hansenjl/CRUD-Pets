@@ -1,0 +1,7 @@
+<h1>Here are the reviews for <%= @vet.name%></h1>
+
+<ul>
+  <% @reviews.each do |r|%>
+    <li><strong><%= r.rating%></strong> <%=r.reviewer.username%> says: <%= r.content %>  </li>
+  <% end %>
+</ul>

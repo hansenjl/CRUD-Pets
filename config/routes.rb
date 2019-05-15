@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :reviews
+  #resources :reviews
   resources :vets
   root 'sessions#home'
   get '/signup' => 'users#new'
@@ -17,7 +17,9 @@ Rails.application.routes.draw do
 
   resources :vets do
     resources :pets, only: [:new, :create, :index]
+    resources :reviews, only: [:new, :create, :index]
   end
+
 
 
 

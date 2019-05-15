@@ -2,6 +2,11 @@
 
 <h2><%= @vet.location %></h2>
 <h3>Specialty: <%= @vet.specialty %></h3>
+<h4>Average Rating: <%= @vet.reviews.average_rating%></h4>
+<p>
+  <%=link_to "See All Reviews", vet_reviews_path(@vet.id) %> -
+  <%=link_to "Write a New Review", new_vet_review_path(@vet.id) %>
+</p>
 
 <h4>Clients:</h4>
 <ul>

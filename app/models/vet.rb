@@ -2,7 +2,7 @@ class Vet < ApplicationRecord
   has_many :pets
   has_many :users, through: :pets
   has_many :reviews
-  has_many :reviewers, through: :reviews
+  has_many :reviewers, through: :reviews, source: :reviewer
   validates :name, :location, :specialty, presence: true
   validates_uniqueness_of  :name, scope: :location
 
