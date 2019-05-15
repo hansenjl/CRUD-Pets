@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :reviews
   resources :vets
   root 'sessions#home'
   get '/signup' => 'users#new'

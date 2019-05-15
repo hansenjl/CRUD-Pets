@@ -1,10 +1,12 @@
 class Pet < ApplicationRecord
+  belongs_to :user
+  belongs_to :vet
   validates :name, :species, presence: true
   validates :name, length: { minimum: 3,
     too_long: "%{count} characters is the minimum allowed" }
+  validates :vet_id, presence: true
+  validates_associated :vet
 
-  belongs_to :user
-  belongs_to :vet
 
   #accepts_nested_attributes_for :vet
 

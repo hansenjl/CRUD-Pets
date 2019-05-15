@@ -2,8 +2,10 @@
 
 <p> <%= @pet.name %> is a <%= @pet.species%> and is <%= @pet.age %> years old. </p>
 
-<p><%= @pet.vet.name %> - <%= @pet.vet.location %>
-</p>
-<%= link_to "Edit Pet", edit_pet_path(@pet) %>
-<%= link_to "Delete Pet", pet_path(@pet), method: :delete  %>
+<p><%= @pet.vet.name %> - <%= @pet.vet.location %></p>
+
+<% if @pet.user == current_user %>
+  <%= link_to "Edit Pet", edit_pet_path(@pet) %>
+  <%= link_to "Delete Pet", pet_path(@pet), method: :delete  %>
+<% end %>
 

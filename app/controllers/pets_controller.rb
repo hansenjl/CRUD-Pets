@@ -1,4 +1,5 @@
 class PetsController < ApplicationController
+  before_action :check_for_logged_in, except: [:index]
 
   def new
     #check if it's nested & it's a proper id
@@ -18,16 +19,12 @@ class PetsController < ApplicationController
     if @pet.save
       redirect_to pet_path(@pet)
     else
-
-      @pet.build_vet
+      @pet.build_vet unless @pet.vet
       render :new
     end
   end
 
   def index
-    if !logged_in?
-      redirect_to '/'
-    end
     if params[:vet_id] && vet = Vet.find_by_id(params[:vet_id])
       #nested route
       @pets = vet.pets

@@ -1,0 +1,15 @@
+<h1>Edit your Review for <%= @review.vet.name %></h1>
+
+<%= form_for @review do |f|%>
+  <div>
+    <%= f.label :content%>
+    <%= f.text_field :content%>
+  </div>
+
+  <div>
+    <%= f.label :rating%>
+    <%= f.text_field :rating%>
+  </div>
+
+  <%= f.submit %>
+<% end %>
