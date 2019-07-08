@@ -7,17 +7,22 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
 
     <% if logged_in? %>
-      <%= link_to 'Log Out', logout_path, method: :delete %>
-      <%= link_to 'All Pets', pets_path %>
-      <%= link_to 'New Pet', new_pet_path %>
-      <%= link_to 'All Vets', vets_path %>
+    <nav class="navbar">
+      <%= link_to 'Log Out', logout_path, method: :delete, class: 'navlink' %>
+      <%= link_to 'All Pets', pets_path, class: 'navlink'%>
+      <%= link_to 'New Pet', new_pet_path, class: 'navlink' %>
+      <%= link_to 'All Vets', vets_path, class: 'navlink' %>
+    </nav>
     <% end %>
 
+    <div class="container">
     <%= yield %>
+    </div>
   </body>
 </html>
