@@ -30,10 +30,10 @@ class PetsController < ApplicationController
       @pets = vet.pets
     else
        if params[:age]
-          @pets = Pet.search_by_age(params[:age]).order_by_age
+          @pets = Pet.search_by_age(params[:age]).order_by_age.includes(:vet,:user)
           @pets = Pet.order_by_age if @pets == []
         else
-          @pets = Pet.order_by_age
+          @pets = Pet.order_by_age.includes(:vet,:user)
         end
     end
   end

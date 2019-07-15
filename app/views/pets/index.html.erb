@@ -1,22 +1,18 @@
 <h1>All the Pets!</h1>
 
 <%= form_tag("/pets", method: "get") do %>
-  <%= label_tag(:age, "Enter the age you want to see") %>
+  <%= label_tag(:age, "All pets above age:") %>
   <%= number_field_tag(:age) %>
   <%= submit_tag("Search") %>
 <% end %>
 
-<h3>Dogs:</h3>
-<% @pets.dogs.each do |pet| %>
-    <p><%= link_to pet.name, pet_path(pet) %> - <%= pet.age%> - owner: <%= pet.user.try(:username) %> - vet: <%= pet.vet.try(:name) %></p>
-<% end %>
+<h3><%= @pets.dogs.count %> Dogs:</h3>
+<%= render 'pets', pets: @pets.dogs%>
 
-<h3>Cats:</h3>
-<% @pets.cats.each do |pet| %>
-    <p><%= link_to pet.name, pet_path(pet) %> - <%= pet.age%> - owner: <%= pet.user.try(:username) %> - vet: <%= pet.vet.try(:name) %></p>
-<% end %>
 
-<h3>Fish:</h3>
-<% @pets.fish.each do |pet| %>
-    <p><%= link_to pet.name, pet_path(pet) %> - <%= pet.age%> - owner: <%= pet.user.try(:username) %> - vet: <%= pet.vet.try(:name) %> </p>
-<% end %>
+<h3><%= @pets.cats.count %> Cats:</h3>
+<%= render 'pets', pets: @pets.cats%>
+
+
+<h3><%= @pets.fish.count %> Fish:</h3>
+<%= render 'pets', pets: @pets.fish%>

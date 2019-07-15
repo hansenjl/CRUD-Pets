@@ -3,7 +3,22 @@
 <ul>
   <% @vets.each do |vet|%>
     <li>
-      <%= link_to vet.name, vet_path(vet) %> - <%= vet.location %> - specialty: <%= vet.specialty %>
+      <%= link_to vet.name, vet_path(vet) %> -
+      <%= vet.location %> -
+      specialty: <%= vet.specialty %> -
+      Serving <%= pluralize(vet.pets.count, 'pet') %>
+      ( <%= pluralize(vet.dogs.count, 'dog') %>,
+        <%= pluralize(vet.cats.count, 'cat') %>, &
+        <%= pluralize(vet.fish.count, 'fish') %>)
+        <ul>
+          <% vet.ordered_pets.each do |p|%>
+          <li><strong><%= p.name %></strong> |
+            <%= p.age%> years old |
+            <strong><%= p.species %></strong> |
+            Owner: <%= p.user.username%>
+          </li>
+          <% end %>
+        </ul>
     </li>
   <% end %>
 </ul>

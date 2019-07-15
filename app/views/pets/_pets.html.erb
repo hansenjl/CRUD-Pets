@@ -1,0 +1,3 @@
+<% pets.each do |pet| %>
+    <p><%= link_to pet.name, pet_path(pet) %> - <%= pet.age%> - owner: <%= pet.user.try(:username) %> - vet: <%= pet.vet.try(:name) %></p>
+<% end %>

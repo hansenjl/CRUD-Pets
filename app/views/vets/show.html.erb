@@ -2,15 +2,39 @@
 
 <h2><%= @vet.location %></h2>
 <h3>Specialty: <%= @vet.specialty %></h3>
-<h4>Average Rating: <%= @vet.reviews.average_rating%></h4>
+<% if @vet.reviews.exists? %>
+<h5>Average Rating: <%= @vet.reviews.average_rating%></h5>
+<% end %>
+<h5>Number of Reviews: <%= @vet.reviews.count%></h5>
+<% if @vet.older_pets.exists? %>
+<h5>Number of Older Pets: <%= @vet.older_pets.count%></h5>
+<% end %>
 <p>
   <%=link_to "See All Reviews", vet_reviews_path(@vet.id) %> -
   <%=link_to "Write a New Review", new_vet_review_path(@vet.id) %>
 </p>
 
-<h4>Clients:</h4>
+<h4>Dog Clients:</h4>
 <ul>
-  <% @vet.pets.order_by_age.each do |pet|%>
+  <% @vet.dogs.order_by_age.each do |pet|%>
+    <li>
+      <%= pet.name %> - <%= pet.age %> - owner: <%= pet.user.try(:username) %>
+    </li>
+  <% end %>
+</ul>
+
+<h4>Cat Clients:</h4>
+<ul>
+  <% @vet.cats.order_by_age.each do |pet|%>
+    <li>
+      <%= pet.name %> - <%= pet.age %> - owner: <%= pet.user.try(:username) %>
+    </li>
+  <% end %>
+</ul>
+
+<h4>Fish Clients:</h4>
+<ul>
+  <% @vet.fish.order_by_age.each do |pet|%>
     <li>
       <%= pet.name %> - <%= pet.age %> - owner: <%= pet.user.try(:username) %>
     </li>
