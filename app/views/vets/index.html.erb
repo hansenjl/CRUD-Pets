@@ -6,10 +6,10 @@
       <%= link_to vet.name, vet_path(vet) %> -
       <%= vet.location %> -
       specialty: <%= vet.specialty %> -
-      Serving <%= pluralize(vet.pets.count, 'pet') %>
-      ( <%= pluralize(vet.dogs.count, 'dog') %>,
-        <%= pluralize(vet.cats.count, 'cat') %>, &
-        <%= pluralize(vet.fish.count, 'fish') %>)
+      Serving <%= pluralize(vet.ordered_pets.size, 'pet') %>
+      ( <%= pluralize(vet.dogs.size, 'dog') %>,
+        <%= pluralize(vet.cats.size, 'cat') %>, &
+        <%= pluralize(vet.fish.size, 'fish') %>)
         <ul>
           <% vet.ordered_pets.each do |p|%>
           <li><strong><%= p.name %></strong> |

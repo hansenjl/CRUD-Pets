@@ -16,6 +16,9 @@ class Pet < ApplicationRecord
    end
 
   scope :order_by_age, -> {order(:age)}
+
+
+
   scope :older_animals, -> {where("age > ?",7)}
   scope :dogs, -> {where(species: "Dog")}
   scope :cats, -> {where(species: "Cat")}
@@ -23,6 +26,8 @@ class Pet < ApplicationRecord
 
   scope :search_by_age, -> (search_age){where("age > ?", search_age)}
 
+
+ # select("cities.*, AVG(visits.city_rating) AS overall_rating, COUNT(cities.id) as times_visited").joins(:visits).group("cities.id")
 
 
 end

@@ -33,7 +33,10 @@ class PetsController < ApplicationController
           @pets = Pet.search_by_age(params[:age]).order_by_age.includes(:vet,:user)
           @pets = Pet.order_by_age if @pets == []
         else
-          @pets = Pet.order_by_age.includes(:vet,:user)
+          @pets = Pet.includes(:vet,:user).order_by_age
+          @cats = @pets.cats
+          @dogs = @pets.dogs
+          @fish = @pets.fish
         end
     end
   end
